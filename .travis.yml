@@ -1,0 +1,26 @@
+before_install: 
+  - curl https://raw.githubusercontent.com/aequologica/holos/travis/settings.xml -o settings.xml
+  - curl http://repo1.maven.org/maven2/io/takari/maven-wrapper/0.1.4/maven-wrapper-0.1.4.tar.gz | tar -xz --strip 1 --keep-old-files
+
+install: /bin/true
+
+before_script:
+  - chmod +x mvnw
+
+script: 
+  - ./mvnw clean install --settings settings.xml
+
+language: java
+jdk:
+  - oraclejdk8
+
+branches:
+  only:
+    - develop
+    - master
+
+notifications:
+  email: false
+  webhooks: https://guarded-waters-8545.herokuapp.com/
+
+sudo: false
