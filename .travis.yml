@@ -1,4 +1,4 @@
-before_install: 
+before_install:
   - curl https://raw.githubusercontent.com/aequologica/holos/travis/settings.xml -o settings.xml
   - curl http://repo1.maven.org/maven2/io/takari/maven-wrapper/0.1.4/maven-wrapper-0.1.4.tar.gz | tar -xz --strip 1 --keep-old-files
 
@@ -7,20 +7,27 @@ install: /bin/true
 before_script:
   - chmod +x mvnw
 
-script: 
-  - ./mvnw clean install --settings settings.xml
+script:
+  - ./mvnw clean deploy -DmyReleases.distributionManagement.repository.url=file:/tmp --settings settings.xml
 
 language: java
+
 jdk:
   - oraclejdk8
 
 branches:
   only:
-    - develop
-    - master
+  - develop
+  - master
 
 notifications:
   email: false
   webhooks: https://guarded-waters-8545.herokuapp.com/
 
 sudo: false
+
+env:
+  global:
+  - secure: VzgwT+bsv0IlnIH0d7OR+LVzam0ZTT+2m8+lheFlisvoaAxfpRCLCRS3IMssNBMUbnO3KG2bJkRKYiO2up1b+PmJgVb9YI2Hv9r0vfxIuBF54LActfpkOuwUKu4PzWSbgMCS/zUzYbtbrV3QkNEAm05ze2FOtbQ3nUA5U6iXF6zIIzbzT7DRYQtTQxv+0RqGGKfl9mmvmqK6syFY8t9KYxJNEPBEBno1QAvx/3gShIpkJUuAzL2LLIFd7+ZERUtBI7Vd9LgSRVT1UModAx+WQTdnzUw0rHy0tcWcYrBJtfNzb+wR0G8+3wozenWLzQXqAATdM/G9SNpvB4YqBWEGCf11j0uBlfEh39Qx3E+oSm6Ota24vFrQMGnI3dmqWNYAUGe3ypXRCcsqMzsCAL/O/cXfN1JZal0uZMyvePy1D7Epi+yxGF3jYhRDNJGjDuPUVv6Wy7eW+DVD0Ty0atRQXAHID+ubcY2bwPltsY/YHg8rNOeFBuXxuYS/80aLpnFterqifzfHNvJdHydg8NMfBBTXnq+vl38XKZC4+zpc2DkCoyZ2X/3HvyYNhB1VmCmEOtGP3/Wcijdg6AN+7d00XCMfZU1tE3u272P4ih2uyacefPHWNGJrAjEqHReW9GWkkgVjlNzaFH/NUoxEobwHNlm6GW/5zOXlaevTrVl9rK4=
+  - secure: Sz5b96QkQCGUfX62HJ5WXRSFl3frzgbE/c6UBeEiCUGQiQ8Xm8JC43DUXE2vSQA1R7LN4VaAQUVJJiQUUOSUZ1qt1dWUwLJokasB7FvmkLVC9R/5TEnM9ovCn7sEqoWysGSvPj29e4GEXNxD+rH8MG8W07MErR+q+3pahACxWLfTtWvnc8+VbkKX6EXnKue1JBvv5bn3On1czmDbX159MslloFWnMVRKPRlKZGAwOPTXhmFw4Jf8EM2p6rAfiLIILb8qhIkC5P1ijAQVs6QQmt5nyoN2vbifUsKx8r2jKdEHHXW0aH5KiluIqNXRG5fxDbpsJVp1bFCWQmCAQ7hUvTMg5SsCwjDcf9Y7KTJFXgi/E8+cX3ziZcYhkx1gUOWNE6ttfJlQmWOM5coK0OEUK5SGJgWmV1Fc8gDb00NDN6k2doQMKFdXfG5ddlPA0FYbpPXevA16fG54iCnyLe9sJCQDTod2y61EcHn89Gc2ljo75Lfbq7q4Zzvsm0/0wSTAXrtW9iwIkqWc6wkRwElCErEsVvvOzhtSZRialDhpcPFiQO9f1db+nRirB1aXXEIh3xkyfigKAnMVfKp5N23/BB6PhsDrkGnb7Bb2S68gT/3pR4HEuLqco3cZIRvRKUwua/UMGd9q9CFxSw4+P6JT2Nq5lNNOTASosyrFdWdLNec=
+  
