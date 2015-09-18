@@ -17,6 +17,7 @@
         <dependency>
             <groupId>net.aequologica.neo</groupId>
             <artifactId>tuhao-core</artifactId>
+            <classifier>${java-version-classifier}</classifier>
             <version>${project.version}</version>
         </dependency>
 
